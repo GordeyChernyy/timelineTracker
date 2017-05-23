@@ -29,7 +29,9 @@ ofxXmlSettings
 
 Hold alt key and move mouse to move keyframe
 
-Tab - show/hide timeline
+Shift - show/hide timeline
+
+Tab - show/hide gui
 
 Spacebar - play
 
