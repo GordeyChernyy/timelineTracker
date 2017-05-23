@@ -37,12 +37,22 @@ public:
     ofxTLVideoTrack* videoTrack;
     
     // tracks
-    ofParameter<int> trackCount;
     ofParameter<bool> isDrawEntirePath;
     vector<track> tracks;
     int curTrack;
     
+    // keyframe
+    bool isDrawNearestKey;
+    int nearestKeyFrameNum;
+    ofVec2f nearestKeyPos;
+    
+    void keyPressed(ofKeyEventArgs &arg);
+    void keyReleased(ofKeyEventArgs &arg);
+    
     void onIsDrawEntirePath(bool &b);
+    
+    void mouseMoved(float x, float y);
+    void mouseClicked(float x, float y);
     
     void setup();
     void setupGui();
@@ -71,6 +81,8 @@ public:
     void setSelected();
     
     void goToNFrames(int count);
+    void goToNFramesFromZero(int count);
+    void goToNearest(float x, float y);
     
     void togglePlay();
     void toggleShowGui();
@@ -78,6 +90,7 @@ public:
 
     void draw();
     void drawTracks();
+    void drawNearestKey();
     void drawTarget(ofVec2f pos);
     void drawHalfLine(); // draw only part of line based on current time
 };

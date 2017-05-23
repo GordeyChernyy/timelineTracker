@@ -17,6 +17,7 @@ tracker::~tracker(){
     saveJsonParameters();
     ofLog() << "gui.saveToFile: " << guiFileName;
 }
+// save
 void tracker::saveJsonParameters(){
     // load track names
     ofxJSONElement jsonTracks;
@@ -29,31 +30,55 @@ void tracker::saveJsonParameters(){
     p["tracks"] = jsonTracks;
     p.save("jsonParameters.json", true);
 }
+// setup
 void tracker::setup(){
     trackFolderName = "tracks";
     jsonParametersFilePath = "jsonParameters.json";
     isShowGui = true;
     curTrack = 0;
+    nearestKeyFrameNum = 0;
+
     setupTimeline();
     setupGui();
     
     loadTracks();
-//    addTrack("point");
+    
+    ofRegisterKeyEvents(this);
 }
 void tracker::setupGui(){
     guiFileName = "TrackerSettings.xml";
     
-    trackCount.isReadOnly();
-    
     isDrawEntirePath.addListener(this, &tracker::onIsDrawEntirePath);
     
     parameters.setName("TrackerParameters");
-    parameters.add(trackCount.set("trackCount", 0, 0, 5));
     parameters.add(isDrawEntirePath.set("isDrawEntirePath", true));
     
     gui.setup(parameters, guiFileName);
     gui.loadFromFile(guiFileName);
     
+}
+// mouse
+void tracker::mouseMoved(float x, float y){
+    if(ofGetKeyPressed(OF_KEY_ALT) && !timeline.getIsPlaying()) addKey(x, y);
+    
+    if(ofGetKeyPressed(OF_KEY_COMMAND) && !timeline.getIsPlaying()){
+        goToNearest(x, y);
+        isDrawNearestKey = true;
+    }else{
+        isDrawNearestKey = false;
+    }
+}
+void tracker::mouseClicked(float x, float y){
+    
+}
+// key
+void tracker::keyPressed(ofKeyEventArgs &arg){
+    
+}
+void tracker::keyReleased(ofKeyEventArgs &arg){
+    if(arg.key == OF_KEY_COMMAND){
+        goToNFramesFromZero(nearestKeyFrameNum+1);
+    }
 }
 // onGui
 void tracker::onIsDrawEntirePath(bool &b){
@@ -107,10 +132,8 @@ void tracker::removeSelectedTrack(){
     prevTrack();
 }
 void tracker::addKey(float x, float y){
-    if(ofGetKeyPressed(OF_KEY_ALT) && !timeline.getIsPlaying()){
-        tracks[curTrack].posX->addKeyframe(x);
-        tracks[curTrack].posY->addKeyframe(y);
-    }
+    tracks[curTrack].posX->addKeyframe(x);
+    tracks[curTrack].posY->addKeyframe(y);    
 }
 void tracker::deleteKey(){
     ofxTLKeyframe* keyFrameX = tracks[curTrack].posX->getKeyframeAtMillis(timeline.getCurrentTimeMillis());
@@ -205,11 +228,41 @@ void tracker::goToNFrames(int count){
         }
     }
 }
+void tracker::goToNFramesFromZero(int count){
+    timeline.getVideoPlayer("Video")->stop();
+    for (int i = 0; i < count; i++) {
+        nextFrame();
+    }
+}
+void tracker::goToNearest(float x, float y){
+    ofVec2f m(x, y);
+    
+    int framesTotal = videoTrack->getPlayer()->getTotalNumFrames();
+    float duration = videoTrack->getPlayer()->getDuration();
+    
+    track *t = &tracks[curTrack];
+    for (int i = 0; i < t->posX->getKeyframes().size(); i++) {
+        ofxTLKeyframe* kx = t->posX->getKeyframes()[i];
+        ofxTLKeyframe* ky = t->posY->getKeyframes()[i];
+        
+        float x = ofMap(kx->value, 0, 1, 0, ofGetWidth(), true);
+        float y = ofMap(ky->value, 0, 1, 0, ofGetHeight(), true);
+
+        float keyframeTime = kx->time;
+        
+        ofVec2f p(x, y);
+        
+        if(m.distance(p)<30){
+            nearestKeyPos = p;
+            nearestKeyFrameNum = (framesTotal*keyframeTime)/duration/1000;
+        }
+    }
+}
 void tracker::togglePlay(){
     if(timeline.getIsPlaying()){
-        timeline.stop();
+        timeline.getVideoPlayer("Video")->setPaused(true);
     }else{
-        timeline.play();
+        timeline.getVideoPlayer("Video")->play();
     }
 }
 void tracker::toggleShowTimeline(){
@@ -226,7 +279,13 @@ void tracker::draw(){
 
     drawTracks();
     if(isShowGui) gui.draw();
+    if(isDrawNearestKey) drawNearestKey();
 //    drawHalfLine();
+}
+void tracker::drawNearestKey(){
+    ofSetColor(ofColor::green);
+    ofDrawCircle(nearestKeyPos, 5);
+    ofDrawBitmapString(ofToString(nearestKeyFrameNum), nearestKeyPos + ofVec2f(0, -20));
 }
 void tracker::drawTracks(){
     for(auto &t : tracks){
