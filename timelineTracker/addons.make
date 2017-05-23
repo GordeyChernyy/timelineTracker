@@ -1,8 +1,9 @@
-ofxAudioDecoder
+../localAddons/ofxTimeline
+../localAddons/ofxAudioDecoder
 ofxMSATimer
+ofxGui
 ofxRange
 ofxTextInputField
 ofxTimecode
-ofxTimeline
 ofxTween
 ofxXmlSettings
