@@ -19,6 +19,8 @@ after updating project using projectGenerator go to Build Settings > Preprocesso
 
 [ofxTween](https://github.com/arturoc/ofxTween)
 
+[ofxJson](https://github.com/jefftimesten/ofxJSON.git)
+
 ofxGui
 
 ofxXmlSettings
@@ -43,11 +45,12 @@ y - delete track
 
 a z - select previous/next track
 
-x- delete keyframe
+x - delete keyframe
 
 ofxTimeline stores track data in two files `timeline0_trackname_X.xml` for x values and `timeline0_trackname_Y.xml` for y. Values are normalized depending on settings in range in `tracker::addTrack`:
 
 ```C++
 t.posX = timeline.addCurves(name + " X", ofRange(0.0, ofGetWidth()), 1.0);
 t.posY = timeline.addCurves(name + " Y", ofRange(0.0, ofGetHeight()), 1.0);
+
 ```

@@ -16,21 +16,29 @@
 #include "ofxTLVideoTrack.h"
 
 #include "track.hpp"
-
+#include "ofxJSON.h"
 
 
 class tracker{
 public:
     tracker();
+    ~tracker();
     
+    // gui and settings
+    string jsonParametersFilePath;
     ofxPanel gui;
+    string guiFileName;
     ofParameterGroup parameters;
-    ofParameter<bool> isDrawEntirePath;
     bool isShowGui;
     
+    // timeline
+    string trackFolderName;
     ofxTimeline timeline;
     ofxTLVideoTrack* videoTrack;
     
+    // tracks
+    ofParameter<int> trackCount;
+    ofParameter<bool> isDrawEntirePath;
     vector<track> tracks;
     int curTrack;
     
@@ -40,6 +48,9 @@ public:
     void setupGui();
     void setupTimeline();
     
+    void saveJsonParameters();
+    
+    void loadTracks();
     void addTrack(string name);
     void removeSelectedTrack();
     

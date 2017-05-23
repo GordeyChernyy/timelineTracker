@@ -1,151 +1,7 @@
 <positions>
-    <element name=" X">
-        <x>0.000000000</x>
-        <y>849.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name=" Y">
-        <x>0.000000000</x>
-        <y>921.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="1 X">
-        <x>0.000000000</x>
-        <y>273.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="1 Y">
-        <x>0.000000000</x>
-        <y>345.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="2 X">
-        <x>0.000000000</x>
-        <y>273.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="2 X_0">
-        <x>0.000000000</x>
-        <y>561.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="2 Y">
-        <x>0.000000000</x>
-        <y>345.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="2 Y_0">
-        <x>0.000000000</x>
-        <y>633.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="3 X">
-        <x>0.000000000</x>
-        <y>417.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="3 X_0">
-        <x>0.000000000</x>
-        <y>705.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="3 Y">
-        <x>0.000000000</x>
-        <y>489.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="3 Y_0">
-        <x>0.000000000</x>
-        <y>777.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="4 X">
-        <x>0.000000000</x>
-        <y>417.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="4 Y">
-        <x>0.000000000</x>
-        <y>489.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="5 X">
-        <x>0.000000000</x>
-        <y>561.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="5 Y">
-        <x>0.000000000</x>
-        <y>633.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="6 X">
-        <x>0.000000000</x>
-        <y>705.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="6 Y">
-        <x>0.000000000</x>
-        <y>777.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="My Custom Keyframes">
-        <x>0.000000000</x>
-        <y>371.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="My Custom Track">
-        <x>0.000000000</x>
-        <y>299.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
     <element name="Video">
         <x>0.000000000</x>
         <y>57.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="finger X">
-        <x>0.000000000</x>
-        <y>273.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="finger Y">
-        <x>0.000000000</x>
-        <y>345.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="point X">
-        <x>0.000000000</x>
-        <y>129.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="point Y">
-        <x>0.000000000</x>
-        <y>201.000000000</y>
         <width>1024.000000000</width>
         <height>40.000000000</height>
     </element>
@@ -153,35 +9,23 @@
         <x>0.000000000</x>
         <y>129.000000000</y>
         <width>1024.000000000</width>
-        <height>66.000000000</height>
+        <height>40.000000000</height>
     </element>
     <element name="pos Y">
         <x>0.000000000</x>
-        <y>227.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="posX">
-        <x>0.000000000</x>
-        <y>129.000000000</y>
-        <width>1024.000000000</width>
-        <height>40.000000000</height>
-    </element>
-    <element name="posY">
-        <x>0.000000000</x>
         <y>201.000000000</y>
         <width>1024.000000000</width>
         <height>40.000000000</height>
     </element>
-    <element name="t1_x">
+    <element name="sdf X">
         <x>0.000000000</x>
-        <y>129.000000000</y>
+        <y>273.000000000</y>
         <width>1024.000000000</width>
         <height>40.000000000</height>
     </element>
-    <element name="t1_y">
+    <element name="sdf Y">
         <x>0.000000000</x>
-        <y>201.000000000</y>
+        <y>345.000000000</y>
         <width>1024.000000000</width>
         <height>40.000000000</height>
     </element>

@@ -12,19 +12,48 @@
 tracker::tracker(){
     
 }
+tracker::~tracker(){
+    gui.saveToFile(guiFileName);
+    saveJsonParameters();
+    ofLog() << "gui.saveToFile: " << guiFileName;
+}
+void tracker::saveJsonParameters(){
+    // load track names
+    ofxJSONElement jsonTracks;
+    for(auto &t : tracks){
+        jsonTracks.append(t.name);
+    }
+    
+    // save file
+    ofxJSON p;
+    p["tracks"] = jsonTracks;
+    p.save("jsonParameters.json", true);
+}
 void tracker::setup(){
+    trackFolderName = "tracks";
+    jsonParametersFilePath = "jsonParameters.json";
     isShowGui = true;
     curTrack = 0;
-    setupGui();
     setupTimeline();
+    setupGui();
+    
+    loadTracks();
+//    addTrack("point");
 }
 void tracker::setupGui(){
-    parameters.setName("TrackerParameters");
-    parameters.add(isDrawEntirePath.set("isDrawEntirePath", true));
-    gui.setup(parameters, "TrackerSettings.xml");
-    gui.loadFromFile("TrackerSettings.xml");
+    guiFileName = "TrackerSettings.xml";
+    
+    trackCount.isReadOnly();
     
     isDrawEntirePath.addListener(this, &tracker::onIsDrawEntirePath);
+    
+    parameters.setName("TrackerParameters");
+    parameters.add(trackCount.set("trackCount", 0, 0, 5));
+    parameters.add(isDrawEntirePath.set("isDrawEntirePath", true));
+    
+    gui.setup(parameters, guiFileName);
+    gui.loadFromFile(guiFileName);
+    
 }
 // onGui
 void tracker::onIsDrawEntirePath(bool &b){
@@ -34,15 +63,15 @@ void tracker::onIsDrawEntirePath(bool &b){
 }
 // timeline control
 void tracker::setupTimeline(){
+    
     //set the timeline up with some default values
+    
     timeline.setup();
+    
     timeline.setFrameRate(30);
     //set big initial duration, longer than the video needs to be
     timeline.setDurationInFrames(20000);
     timeline.setLoopType(OF_LOOP_NORMAL);
-    
-    // add tracker
-    addTrack("point");
     
     // load video
     videoTrack = timeline.addVideoTrack("Video", "fingers.mov");
@@ -50,11 +79,14 @@ void tracker::setupTimeline(){
     timeline.setDurationInFrames(videoTrack->getPlayer()->getTotalNumFrames());
     timeline.setTimecontrolTrack(videoTrack); //video playback will control the time
     timeline.bringTrackToTop(videoTrack);
-    timeline.disableEvents();
+    
+    
+//    timeline.disableEvents();
 }
 void tracker::addTrack(string name){
     track t;
     t.name = name;
+    
     t.posX = timeline.addCurves(name + " X", ofRange(0.0, ofGetWidth()), 1.0);
     t.posY = timeline.addCurves(name + " Y", ofRange(0.0, ofGetHeight()), 1.0);
     t.posX->setDefaultEasingType(2);
@@ -142,6 +174,18 @@ void tracker::prevTrack(){
     curTrack--;
     curTrack = MAX(0, curTrack);
     setSelected();
+}
+void tracker::loadTracks(){
+    ofxJSON p;
+    if(ofFile(jsonParametersFilePath)){
+        p.open(jsonParametersFilePath);
+        for (int i = 0; i < p["tracks"].size(); i++) {
+            string name =  p["tracks"][i].asString();
+            addTrack(name);
+        }
+    }else{
+        ofLog() << jsonParametersFilePath << " file not found";
+    }
 }
 void tracker::setSelected(){
     for(auto &t : tracks){
