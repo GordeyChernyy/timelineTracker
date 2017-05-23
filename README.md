@@ -56,3 +56,6 @@ t.posX = timeline.addCurves(name + " X", ofRange(0.0, ofGetWidth()), 1.0);
 t.posY = timeline.addCurves(name + " Y", ofRange(0.0, ofGetHeight()), 1.0);
 
 ```
+To select keyframe hold Command key then move mouse over the line, release key to move to selected green keyframe:
+
+![keyframeSelect](docs/keyframeSelect.gif)
