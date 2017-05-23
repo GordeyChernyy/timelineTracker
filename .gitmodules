@@ -1,0 +1,6 @@
+[submodule "localAddons/ofxTimeline"]
+	path = localAddons/ofxTimeline
+	url = https://github.com/GordeyChernyy/ofxTimeline
+[submodule "localAddons/ofxAudioDecoder"]
+	path = localAddons/ofxAudioDecoder
+	url = https://github.com/GordeyChernyy/ofxAudioDecoder
