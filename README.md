@@ -22,3 +22,15 @@ after updating project using projectGenerator go to Build Settings > Preprocesso
 ofxGui
 
 ofxXmlSettings
+
+### Usage
+
+Hold alt key and move mouse to move keyframe
+
+d f - jump through the 5frames
+e r - previous/next frame
+c v - previous/next keyframe
+t - create new track
+y - delete track
+a z - select previous/next track
+x - delete keyframe
