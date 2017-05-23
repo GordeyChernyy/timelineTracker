@@ -3,7 +3,13 @@
         <easefunc>0</easefunc>
         <easetype>2</easetype>
         <time>00:00:00:000</time>
-        <value>0.627604187</value>
+        <value>0.462239593</value>
+    </key>
+    <key>
+        <easefunc>0</easefunc>
+        <easetype>2</easetype>
+        <time>00:00:00:033</time>
+        <value>0.619791687</value>
     </key>
     <key>
         <easefunc>0</easefunc>
@@ -33,7 +39,7 @@
         <easefunc>0</easefunc>
         <easetype>2</easetype>
         <time>00:00:00:830</time>
-        <value>0.635416687</value>
+        <value>0.257812500</value>
     </key>
     <key>
         <easefunc>0</easefunc>
@@ -51,7 +57,7 @@
         <easefunc>0</easefunc>
         <easetype>2</easetype>
         <time>00:00:01:328</time>
-        <value>0.750000000</value>
+        <value>0.678385437</value>
     </key>
     <key>
         <easefunc>0</easefunc>

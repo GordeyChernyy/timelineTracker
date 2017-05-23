@@ -177,11 +177,10 @@ void tracker::prevKeyFrame(){
     int framesTotal = videoTrack->getPlayer()->getTotalNumFrames();
     float duration = videoTrack->getPlayer()->getDuration();
     
-    for (int i = tracks[curTrack].posX->getKeyframes().size()-1; i > 0; i--) {
+    for (int i = tracks[curTrack].posX->getKeyframes().size()-1; i >= 0; i--) {
         float keyframeTime = tracks[curTrack].posX->getKeyframes()[i]->time;
         if(keyframeTime<time){
             int f = (framesTotal*keyframeTime)/duration/1000;
-            ofLog() << f;
             int curFrame = timeline.getCurrentFrame();
             goToNFrames(-(curFrame-f));
             return;
@@ -274,9 +273,8 @@ void tracker::toggleShowGui(){
 }
 // draw
 void tracker::draw(){
-    timeline.draw();
     timeline.getVideoPlayer("Video")->draw(0, 0);
-
+    timeline.draw();
     drawTracks();
     if(isShowGui) gui.draw();
     if(isDrawNearestKey) drawNearestKey();
