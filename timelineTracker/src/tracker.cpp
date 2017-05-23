@@ -39,6 +39,8 @@ void tracker::setup(){
     nearestKeyFrameNum = 0;
 
     setupTimeline();
+    toggleShowTimeline();
+    
     setupGui();
     
     loadTracks();
@@ -106,7 +108,7 @@ void tracker::setupTimeline(){
     timeline.bringTrackToTop(videoTrack);
     
     
-//    timeline.disableEvents();
+    timeline.disableEvents();
 }
 void tracker::addTrack(string name){
     track t;
