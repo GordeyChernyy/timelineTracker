@@ -13,8 +13,24 @@ tracker::tracker(){
     
 }
 void tracker::setup(){
+    isShowGui = true;
     curTrack = 0;
+    setupGui();
     setupTimeline();
+}
+void tracker::setupGui(){
+    parameters.setName("TrackerParameters");
+    parameters.add(isDrawEntirePath.set("isDrawEntirePath", true));
+    gui.setup(parameters, "TrackerSettings.xml");
+    gui.loadFromFile("TrackerSettings.xml");
+    
+    isDrawEntirePath.addListener(this, &tracker::onIsDrawEntirePath);
+}
+// onGui
+void tracker::onIsDrawEntirePath(bool &b){
+    for(auto &t : tracks){
+        t.isDrawEntirePath = b;
+    }
 }
 // timeline control
 void tracker::setupTimeline(){
@@ -156,12 +172,16 @@ void tracker::toggleShowTimeline(){
     if(timeline.getIsShowing()) timeline.hide();
     else timeline.show();
 }
+void tracker::toggleShowGui(){
+    isShowGui ^= true;
+}
 // draw
 void tracker::draw(){
     timeline.draw();
     timeline.getVideoPlayer("Video")->draw(0, 0);
 
     drawTracks();
+    if(isShowGui) gui.draw();
 //    drawHalfLine();
 }
 void tracker::drawTracks(){

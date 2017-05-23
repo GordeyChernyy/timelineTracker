@@ -18,17 +18,18 @@ class track{
 public:
     string name;
     bool isActive;
+    bool isDrawEntirePath;
     
     track(){
+        isDrawEntirePath = false;
         isActive = false;
     }
-    ofVec2f getPos(){
-        return ofVec2f(posX->getValue(), posY->getValue());
-    }
+    ofVec2f getPos();
     
     void setup();
     
     void draw();
+    void drawTimeBasedLine();
     void drawLine();
     void drawPlayHead();
     

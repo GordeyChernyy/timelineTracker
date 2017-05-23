@@ -23,14 +23,21 @@ class tracker{
 public:
     tracker();
     
+    ofxPanel gui;
+    ofParameterGroup parameters;
+    ofParameter<bool> isDrawEntirePath;
+    bool isShowGui;
+    
     ofxTimeline timeline;
     ofxTLVideoTrack* videoTrack;
     
     vector<track> tracks;
     int curTrack;
     
-    void setup();
+    void onIsDrawEntirePath(bool &b);
     
+    void setup();
+    void setupGui();
     void setupTimeline();
     
     void addTrack(string name);
@@ -55,6 +62,7 @@ public:
     void goToNFrames(int count);
     
     void togglePlay();
+    void toggleShowGui();
     void toggleShowTimeline();
 
     void draw();

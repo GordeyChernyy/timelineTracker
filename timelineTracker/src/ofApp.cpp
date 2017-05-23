@@ -57,11 +57,14 @@ void ofApp::keyPressed(int key){
     if(key == 't'){
         tracker.addTrack(ofSystemTextBoxDialog("New track name:"));
     }
-    if(key == OF_KEY_TAB){
+    if(key == OF_KEY_SHIFT){
         tracker.toggleShowTimeline();
     }
     if(key == 'y'){
         tracker.removeSelectedTrack();
+    }
+    if(key == OF_KEY_TAB){
+        tracker.toggleShowGui();
     }
 }
 
