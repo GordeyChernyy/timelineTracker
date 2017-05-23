@@ -1,7 +1,7 @@
 OF 0.9.8
 ### Installation
 
-to clone with submodules (localAddons used):
+to clone with submodules (forked localAddons used):
 
 `git clone --recursive https://github.com/GordeyChernyy/timelineTracker`
 
@@ -26,6 +26,8 @@ ofxXmlSettings
 ### Usage
 
 Hold alt key and move mouse to move keyframe
+
+Spacebar - play
 
 d f - jump through the 5frames
 
