@@ -1,10 +1,11 @@
+OF 0.9.8
 ### Installation
 
 to clone with submodules (localAddons used):
 
 `git clone --recursive https://github.com/GordeyChernyy/timelineTracker`
 
-after updating project using projectGenerator go to Build Settings > Preprocessor macros > and add this line `TIMELINE_VIDEO_INCLUDED=1`
+after updating project using projectGenerator go to Build Settings > Preprocessor macros > add `TIMELINE_VIDEO_INCLUDED=1`
 
 #### Addons
 
