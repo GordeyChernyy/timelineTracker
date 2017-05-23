@@ -28,9 +28,15 @@ ofxXmlSettings
 Hold alt key and move mouse to move keyframe
 
 d f - jump through the 5frames
+
 e r - previous/next frame
+
 c v - previous/next keyframe
+
 t - create new track
+
 y - delete track
+
 a z - select previous/next track
-x - delete keyframe
+
+x- delete keyframe
