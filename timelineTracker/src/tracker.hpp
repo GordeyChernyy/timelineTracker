@@ -24,6 +24,9 @@ public:
     tracker();
     ~tracker();
     
+    int videoWidth;
+    int videoHeight;
+    
     // gui and settings
     string jsonParametersFilePath;
     ofxPanel gui;

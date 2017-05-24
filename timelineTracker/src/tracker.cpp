@@ -32,19 +32,22 @@ void tracker::saveJsonParameters(){
 }
 // setup
 void tracker::setup(){
+    // set video size
+    videoWidth = ofGetWidth();
+    videoHeight = ofGetHeight();
+    
+    // init
     trackFolderName = "tracks";
     jsonParametersFilePath = "jsonParameters.json";
     isShowGui = true;
     curTrack = 0;
     nearestKeyFrameNum = 0;
 
+    // setup
     setupTimeline();
     toggleShowTimeline();
-    
     setupGui();
-    
     loadTracks();
-    
     ofRegisterKeyEvents(this);
 }
 void tracker::setupGui(){
@@ -107,15 +110,16 @@ void tracker::setupTimeline(){
     timeline.setTimecontrolTrack(videoTrack); //video playback will control the time
     timeline.bringTrackToTop(videoTrack);
     
-    
 //    timeline.disableEvents();
+    
 }
 void tracker::addTrack(string name){
     track t;
     t.name = name;
-    
-    t.posX = timeline.addCurves(name + " X", ofRange(0.0, ofGetWidth()), 1.0);
-    t.posY = timeline.addCurves(name + " Y", ofRange(0.0, ofGetHeight()), 1.0);
+    t.w = videoWidth;
+    t.h = videoHeight;
+    t.posX = timeline.addCurves(name + " X", ofRange(0.0, videoWidth), 1.0);
+    t.posY = timeline.addCurves(name + " Y", ofRange(0.0, videoHeight), 1.0);
     t.posX->setDefaultEasingType(2);
     t.posY->setDefaultEasingType(2);
     t.posX->setDefaultEasingFunction(0);
@@ -249,8 +253,8 @@ void tracker::goToNearest(float x, float y){
         ofxTLKeyframe* kx = t->posX->getKeyframes()[i];
         ofxTLKeyframe* ky = t->posY->getKeyframes()[i];
         
-        float x = ofMap(kx->value, 0, 1, 0, ofGetWidth(), true);
-        float y = ofMap(ky->value, 0, 1, 0, ofGetHeight(), true);
+        float x = ofMap(kx->value, 0, 1, 0, videoWidth, true);
+        float y = ofMap(ky->value, 0, 1, 0, videoHeight, true);
 
         float keyframeTime = kx->time;
         

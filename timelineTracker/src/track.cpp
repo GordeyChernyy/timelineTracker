@@ -35,8 +35,8 @@ void track::drawTimeBasedLine(){
             break;
         }
         
-        float x = ofMap(keyframesX[i]->value, 0, 1, 0, ofGetWidth(), true);
-        float y = ofMap(keyframesY[i]->value, 0, 1, 0, ofGetHeight(), true);
+        float x = ofMap(keyframesX[i]->value, 0, 1, 0, w, true);
+        float y = ofMap(keyframesY[i]->value, 0, 1, 0, h, true);
         float r = ofMap(i, 0, keyframesX.size(), 1, 8);
         line.addVertex(x, y);
     }
@@ -53,8 +53,8 @@ void track::drawLine(){
     ofPolyline line;
     
     for (int i = 0; i < keyframesX.size(); i++) {
-        float x = ofMap(keyframesX[i]->value, 0, 1, 0, ofGetWidth(), true);
-        float y = ofMap(keyframesY[i]->value, 0, 1, 0, ofGetHeight(), true);
+        float x = ofMap(keyframesX[i]->value, 0, 1, 0, w, true);
+        float y = ofMap(keyframesY[i]->value, 0, 1, 0, h, true);
         float r = ofMap(i, 0, keyframesX.size(), 1, 8);
         line.addVertex(x, y);
     }

@@ -16,6 +16,9 @@
 
 class track{
 public:
+    int w;
+    int h;
+    
     string name;
     bool isActive;
     bool isDrawEntirePath;
