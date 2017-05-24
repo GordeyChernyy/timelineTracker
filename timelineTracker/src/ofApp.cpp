@@ -63,6 +63,9 @@ void ofApp::keyPressed(int key){
     if(key == 'y'){
         tracker.removeSelectedTrack();
     }
+    if(key == 's'){
+        tracker.jumpToStart();
+    }
     if(key == OF_KEY_TAB){
         tracker.toggleShowGui();
     }

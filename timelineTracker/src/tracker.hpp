@@ -80,6 +80,8 @@ public:
     void prevTrack();
     void setSelected();
     
+    void jumpToStart();
+    
     void goToNFrames(int count);
     void goToNFramesFromZero(int count);
     void goToNearest(float x, float y);

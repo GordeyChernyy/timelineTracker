@@ -108,7 +108,7 @@ void tracker::setupTimeline(){
     timeline.bringTrackToTop(videoTrack);
     
     
-    timeline.disableEvents();
+//    timeline.disableEvents();
 }
 void tracker::addTrack(string name){
     track t;
@@ -142,6 +142,9 @@ void tracker::deleteKey(){
     ofxTLKeyframe* keyFrameY = tracks[curTrack].posY->getKeyframeAtMillis(timeline.getCurrentTimeMillis());
     tracks[curTrack].posX->deleteKeyframe(keyFrameX);
     tracks[curTrack].posY->deleteKeyframe(keyFrameY);
+}
+void tracker::jumpToStart(){
+    timeline.getVideoPlayer("Video")->firstFrame();
 }
 void tracker::prevFrame(){
     timeline.getVideoPlayer("Video")->previousFrame();
@@ -260,10 +263,11 @@ void tracker::goToNearest(float x, float y){
     }
 }
 void tracker::togglePlay(){
-    if(timeline.getIsPlaying()){
+    if(timeline.getVideoPlayer("Video")->isPlaying()){
         timeline.getVideoPlayer("Video")->setPaused(true);
     }else{
         timeline.getVideoPlayer("Video")->play();
+        
     }
 }
 void tracker::toggleShowTimeline(){

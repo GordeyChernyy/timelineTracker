@@ -35,6 +35,8 @@ Tab - show/hide gui
 
 Spacebar - play
 
+s - jump to start
+
 d f - jump through the 5frames
 
 e r - previous/next frame
